@@ -51,7 +51,7 @@ def double_texting_switch(on=None):
 
 def double_text():
     
-    with open("double_text_system_instructions.txt",
+    with open("_double_text_system_instructions.txt",
           "r", encoding='UTF-8') as double_text_system_instructions_file:
         double_text_system_instruction = double_text_system_instructions_file.read().replace("\n", " ")
 
@@ -81,7 +81,7 @@ def double_text():
     
 def custom_instruction_generator(memory_input = None):
 
-    with open("system_writer_system_instructions.txt",
+    with open("_system_writer_system_instructions.txt",
           "r", encoding='UTF-8') as sys_writer_system_instruction_file:
         sys_writer_system_instruction = sys_writer_system_instruction_file.read().replace("\n", " ")
 
@@ -94,7 +94,7 @@ def custom_instruction_generator(memory_input = None):
 
     if memory_input:
 
-        with open("history_writer_system_instructions.txt",
+        with open("_history_writer_system_instructions.txt",
           "r", encoding='UTF-8') as history_writer_system_instruction_file:
             history_writer_system_instruction = history_writer_system_instruction_file.read().replace("\n", " ")
 
@@ -149,7 +149,7 @@ def custom_instruction_generator(memory_input = None):
 
 def chat():
 
-    with open("vinman_system_instructions.txt",
+    with open("_vinman_system_instructions.txt",
           "r", encoding='UTF-8') as vinman_system_instruction_file:
         vinman_system_instruction = vinman_system_instruction_file.read().replace("\n", " ")
     
