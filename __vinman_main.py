@@ -1,7 +1,10 @@
-import ollama
-import time
-import random
+# Standard Imports
 import os
+import random
+import time
+
+# Third Party Imports
+import ollama
 
 BLUE = '\033[94m'
 GREEN = '\033[92m'
