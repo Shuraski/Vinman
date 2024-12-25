@@ -60,4 +60,22 @@ After running pip install ollama, make sure to set up the proper model by runnin
 ollama run llama3.2:latest
 ```
 
+## Contact
+
+If you have any questions, suggestions, or feedback, feel free to reach out:
+
+**Email**: [sashanik9623@gmail.com](mailto:sashanik9623@gmail.com)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## Licenses
+
+This project is distributed under the MIT License. The full text of the license for this project can be found in the `LICENSE` file.
+
+Additionally, the project makes use of third-party software that is licensed under the following terms:
+
+- **Ollama**: MIT License
+
+Refer to the respective license documentation included in the project for full details.
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
