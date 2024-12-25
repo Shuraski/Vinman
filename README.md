@@ -1,10 +1,9 @@
 <a id="readme-top"></a>
 
 # Vinman Converse
-<div style="border: 1px solid #FF6666; padding: 10px 10px 0px 9px; border-radius: 5px; color: #FF6666;">
 
-<b>Disclaimer:</b><br>
-I do not have full control over the AI’s responses or behavior. I provided system instructions to guide it in the intended direction; however, unless I pre-train the model I’m working with and conduct extensive red-teaming, the responses generated will be very unreliable. The AI may occasionally produce inaccurate information, hallucinate, or behave in unexpected ways, which I have no control over.
+<b style="color: #E57373;">Disclaimer:</b><br>
+<span style="color: #E57373;">I do not have full control over the AI’s responses or behavior. I provided system instructions to guide it in the intended direction; however, unless I pre-train the model I’m working with and conduct extensive red-teaming, the responses generated will be very unreliable. The AI may occasionally produce inaccurate information, hallucinate, or behave in unexpected ways, which I have no control over.</span>
 
 </div>
 
