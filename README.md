@@ -1,13 +1,18 @@
-# Vinman Converse
+<a id="readme-top"></a>
 
-Disclaimer:
+# Vinman Converse
+<div style="border: 1px solid #FF6666; padding: 10px 10px 0px 9px; border-radius: 5px; color: #FF6666;">
+
+<b>Disclaimer:</b><br>
 I do not have full control over the AI’s responses or behavior. I provided system instructions to guide it in the intended direction; however, unless I pre-train the model I’m working with and conduct extensive red-teaming, the responses generated will be very unreliable. The AI may occasionally produce inaccurate information, hallucinate, or behave in unexpected ways, which I have no control over.
 
-## Project Overview
+</div>
+
+## Overview
 
 The goal of this project is to develop a human-like chat system that mimics natural conversation dynamics. Key features include realistic message delays, customizable personality profiles, persistent chat history, and support for behaviors like double texting to enhance authenticity.
 
-### Features
+**Features**:
 
 - Human-like Chat
 - Personality Builder
@@ -19,11 +24,31 @@ The goal of this project is to develop a human-like chat system that mimics natu
 **Unstable Features**:
 - Double Texting
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## Getting Started
+
+### Minimum System Requirements
+
+- **CPU**: Intel Core i5 or AMD Ryzen 5  
+- **RAM**: 8 GB  
+- **Storage**: 10 GB free disk space  
+- **GPU**: CUDA-compatible GPU with 4 GB VRAM (e.g., NVIDIA GTX 1050 Ti)  
+
+### Recommended System Requirements
+
+- **CPU**: Intel Core i7 or AMD Ryzen 7  
+- **RAM**: 16 GB or more  
+- **Storage**: 20 GB free disk space  
+- **GPU**: NVIDIA RTX 3060 or higher with 8 GB VRAM  
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ## Installation Instructions
 
 To get this code running, download and install the Ollama app from their official website.
 
-[Ollama Official Website](https://ollama.com/)
+>[Ollama Official Website](https://ollama.com/)
 
 Once installed, open your VS Code terminal and run the following command:
 ```bash
@@ -34,3 +59,5 @@ After running pip install ollama, make sure to set up the proper model by runnin
 ```bash
 ollama run llama3.2:latest
 ```
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
