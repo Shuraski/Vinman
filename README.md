@@ -2,9 +2,8 @@
 
 # Vinman Converse
 
-⚠️
-**Disclaimer:**
-I do not have full control over the AI’s responses or behavior. I provided system instructions to guide it in the intended direction; however, unless I pre-train the model I’m working with and conduct extensive red-teaming, the responses generated will be very unreliable. The AI may occasionally produce inaccurate information, hallucinate, or behave in unexpected ways, which I have no control over.
+> [!WARNING]
+> I do not have full control over the AI’s responses or behavior. I provided system instructions to guide it in the intended direction; however, unless I pre-train the model I’m working with and conduct extensive red-teaming, the responses generated will be very unreliable. The AI may occasionally produce inaccurate information, hallucinate, or behave in unexpected ways, which I have no control over.
 
 </div>
 
