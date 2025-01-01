@@ -103,9 +103,8 @@ def double_text():
     
 def custom_instruction_generator(memory_input = None):
 
-    with open("_system_writer_system_instructions.txt",
-          "r", encoding='UTF-8') as sys_writer_system_instruction_file:
-        sys_writer_system_instruction = sys_writer_system_instruction_file.read().replace("\n", " ")
+    with open("_system_writer_system_instructions.json", "r", encoding='UTF-8') as sys_writer_system_instruction_file:
+        sys_writer_system_instruction = json.load(sys_writer_system_instruction_file)
 
     modelfile = f'''
     FROM llama3.2:latest
