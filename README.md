@@ -56,7 +56,7 @@ If you have any questions, suggestions, or feedback, feel free to reach out:
 
 ## Licenses
 
-This project is distributed under the MIT License. The full text of the license for this project can be found in the `LICENSE` file.
+This project is distributed under the MIT License. The full text of the license for this project can be found in the `THIRD_PARTY_LICENSES` folder.
 
 Additionally, this project makes use of third-party software that is licensed under the following terms:
 
