@@ -114,9 +114,8 @@ def custom_instruction_generator(memory_input = None):
 
     if memory_input:
 
-        with open("_history_writer_system_instructions.txt",
-          "r", encoding='UTF-8') as history_writer_system_instruction_file:
-            history_writer_system_instruction = history_writer_system_instruction_file.read().replace("\n", " ")
+        with open("_history_writer_system_instructions.json", "r", encoding='UTF-8') as history_writer_system_instruction_file:
+            history_writer_system_instruction = json.load(history_writer_system_instruction_file)
 
         with open("vinman_custom_instructions.txt",
           "r", encoding='UTF-8') as vinman_personality_instruction_file:
