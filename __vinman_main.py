@@ -55,6 +55,7 @@ def chat_history_store(user_input_text = None, vinman_output_text = None):
 
 double_texting_binary = 0  # Default state: OFF
 
+# Double Texting Function
 def double_texting_switch(on=None):
 
     global double_texting_binary
@@ -70,7 +71,6 @@ def double_texting_switch(on=None):
 
     return double_texting_binary
 
-# Double Text Function
 def double_text():
     
     with open("_double_text_system_instructions.txt",
