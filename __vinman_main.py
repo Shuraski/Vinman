@@ -12,11 +12,13 @@ BLUE = '\033[94m'
 GREEN = '\033[92m'
 RED = '\033[91m'
 YELLOW = '\033[93m'
+UNDERLINE = '\033[4m'
+BOLD = '\033[1m'
 RESET = '\033[0m'
 
 file_path = ""
 
-# Checking if the model is installed
+# Checking model install
 def check_model_installed(model_name):
     try:
         result = subprocess.run(['ollama', 'list'], capture_output=True, text=True)
@@ -78,7 +80,7 @@ def double_text():
         double_text_system_instruction = double_text_system_instructions_file.read().replace("\n", " ")
 
     modelfile = f'''
-    FROM llama3.2:latest
+    FROM {chosen_model}
     SYSTEM {double_text_system_instruction}'''
 
     ollama.create(model='vinman_converse', modelfile=modelfile)
@@ -107,7 +109,7 @@ def custom_instruction_generator(memory_input = None):
         sys_writer_system_instruction = json.load(sys_writer_system_instruction_file)
 
     modelfile = f'''
-    FROM llama3.2:latest
+    FROM {chosen_model}
     SYSTEM {sys_writer_system_instruction}'''
 
     ollama.create(model='vinman_converse', modelfile=modelfile)
@@ -122,7 +124,7 @@ def custom_instruction_generator(memory_input = None):
             vinman_personality_instruction = vinman_personality_instruction_file.read().replace("\n", " ")
 
         modelfile = f'''
-        FROM llama3.2:latest
+        FROM {chosen_model}
         SYSTEM Core personality: {vinman_personality_instruction} Chat log: {history_writer_system_instruction} I want you to build on top of the core personality based off of what is inside the chat log.'''
 
         ollama.create(model='vinman_converse', modelfile=modelfile)
@@ -176,7 +178,7 @@ def chat():
         vinman_personality_instruction = vinman_personality_instruction_file.read().replace("\n", " ")
 
     modelfile = f'''
-    FROM llama3.2:latest
+    FROM {chosen_model}
     SYSTEM This is your base system instruction: {vinman_system_instruction} This is your personality: {vinman_personality_instruction}'''
 
     ollama.create(model='vinman_converse', modelfile=modelfile)
@@ -239,29 +241,50 @@ def chat():
         print(f"\n{YELLOW}{response['message']['content']}{RESET}\n")
 
         if double_texting_binary == 1:
-            random_execution = random.randint(0,1)
-            if random_execution == 1:
-                double_text()
+            double_text()
 
+# Main Program Loop
 while True:
     if not os.path.exists('vinman_custom_instructions.txt'):
-        choice = input(f"\nInitialize Converse Bot? Y/N?: ")
+        
+        global current_model
 
-        check_model_installed('llama3.2:latest')
+        print(f"\n{UNDERLINE}{BOLD}Recommended: llama3.2{RESET}\n"
+            f"Parameter Size: 3b\n"
+            f"Required Storage: 2.0 GB\n")
+        
+        print(f"{UNDERLINE}{BOLD}llama3.2:1b{RESET}\n"
+              f"Parameter Size: 1b\n"
+              f"Required Storage: 1.3 GB\n")
+        
+        print(f"{UNDERLINE}{BOLD}dolphin-mistral:latest{RESET}\n"
+              f"Parameter Size: 7b\n"
+              f"Required Storage: 4.1 GB\n")
 
-        if choice.lower().strip() == 'y':
+        chosen_model = input(f"{BLUE}Choose a model to install: {RESET}")
+
+        if chosen_model.lower().strip() == "llama3.2":
+            check_model_installed(chosen_model)
+            current_model =  chosen_model
             custom_instruction_generator()
-
-        elif choice.lower().strip() == 'n':
-            print(f"\n{RED}Ending program...{RESET}\n")
-            break
-
-        elif choice.lower().strip() == 'exit':
+        
+        elif chosen_model.lower().strip() == "llama3.2:1b":
+            check_model_installed(chosen_model)
+            current_model = chosen_model 
+            custom_instruction_generator()
+        
+        elif chosen_model.lower().strip() == "dolphin-mistral:latest":
+            check_model_installed(chosen_model)
+            current_model = chosen_model
+            custom_instruction_generator()
+        
+        elif chosen_model.lower().strip() == 'exit':
             print(f"\n{RED}Ending program...{RESET}\n")
             break
 
         else:
-            print(f"\n{RED}Invalid choice. Please enter Y/N or 'exit' to quit.{RESET}")
+            print(f"{RED}Invalid choice. Please enter a valid model name.{RESET}")
+            continue
 
     else:
         print(f"\n{BLUE}Enter{RESET}{RED} 'exit' {RESET}{BLUE}to quit\nConverse Bot Menu Options:{RESET}\n")
