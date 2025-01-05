@@ -18,7 +18,7 @@ RESET = '\033[0m'
 
 file_path = ""
 
-# Checking model install
+# Checking Whether the Model is Installed
 def check_model_installed(model_name):
     try:
         result = subprocess.run(['ollama', 'list'], capture_output=True, text=True)
@@ -31,6 +31,11 @@ def check_model_installed(model_name):
     except subprocess.CalledProcessError as e:
         print(f"An error occurred while checking or installing the model: {e}")
         exit(1)
+
+### NOT IMPLEMENTED YET ###
+# Checking Whether (chosen_model) Has Content
+def check_model_content(check_model):
+    return chosen_model if chosen_model else 'llama3.2'
 
 # Response Delay Function
 def response_delay(delay_text,delay_time):
@@ -57,7 +62,7 @@ def chat_history_store(user_input_text = None, vinman_output_text = None):
 
 double_texting_binary = 0  # Default state: OFF
 
-# Double Texting Function
+# Double Texting Switch
 def double_texting_switch(on=None):
 
     global double_texting_binary
@@ -73,6 +78,7 @@ def double_texting_switch(on=None):
 
     return double_texting_binary
 
+# Double Text Function
 def double_text():
     
     with open("_double_text_system_instructions.txt",
@@ -102,7 +108,8 @@ def double_text():
     
     response_delay(response['message']['content'],2)
     print(f"\n{YELLOW}{response['message']['content']}{RESET}\n")
-    
+
+# Custom Instruction Generator
 def custom_instruction_generator(memory_input = None):
 
     with open("_system_writer_system_instructions.json", "r", encoding='UTF-8') as sys_writer_system_instruction_file:
@@ -168,6 +175,7 @@ def custom_instruction_generator(memory_input = None):
             if os.path.exists('vinman_custom_instructions.txt'):
                 break
 
+# Vinman Converse Main Chat Function
 def chat():
 
     with open("_vinman_system_instructions.json", "r", encoding='UTF-8') as vinman_system_instruction_file:
