@@ -253,10 +253,6 @@ while True:
             f"Parameter Size: 3b\n"
             f"Required Storage: 2.0 GB\n")
         
-        print(f"{UNDERLINE}{BOLD}llama3.2:1b{RESET}\n"
-              f"Parameter Size: 1b\n"
-              f"Required Storage: 1.3 GB\n")
-        
         print(f"{UNDERLINE}{BOLD}dolphin-mistral:latest{RESET}\n"
               f"Parameter Size: 7b\n"
               f"Required Storage: 4.1 GB\n")
@@ -266,11 +262,6 @@ while True:
         if chosen_model.lower().strip() == "llama3.2":
             check_model_installed(chosen_model)
             current_model =  chosen_model
-            custom_instruction_generator()
-        
-        elif chosen_model.lower().strip() == "llama3.2:1b":
-            check_model_installed(chosen_model)
-            current_model = chosen_model 
             custom_instruction_generator()
         
         elif chosen_model.lower().strip() == "dolphin-mistral:latest":
