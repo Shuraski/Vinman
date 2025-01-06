@@ -33,6 +33,16 @@ def check_model_installed(model_name):
         exit(1)
 
 ### NOT IMPLEMENTED YET ###
+# Saving Chosen Model
+def save_chosen_model():
+    if os.path.exists('chosen_model.txt'):
+        with open('chosen_model.txt', 'r') as file:
+            return file.read()
+    return None
+
+# Implement function to load chosen model from saved file
+
+### NOT IMPLEMENTED YET ###
 # Checking Whether (chosen_model) Has Content
 def check_model_content(check_model):
     return chosen_model if chosen_model else 'llama3.2'
