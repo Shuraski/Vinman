@@ -40,7 +40,17 @@ def save_chosen_model():
             return file.read()
     return None
 
+### NOT IMPLEMENTED YET ###
 # Implement function to load chosen model from saved file
+def load_chosen_model(model_name):
+    if os.path.exists('chosen_model.txt'):
+        with open('chosen_model.txt', 'r') as file:
+            first_line = file.readline().strip()
+            if first_line == model_name:
+                return first_line
+            else:
+                return None
+    return None
 
 ### NOT IMPLEMENTED YET ###
 # Checking Whether (chosen_model) Has Content
