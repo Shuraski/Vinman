@@ -11,7 +11,6 @@ The goal of this project is to develop a human-like chat system that mimics natu
 
 **Features**:
 
-- Human-like Chat
 - Personality Builder
 - Personality Editor
 - Personality Tweaker
