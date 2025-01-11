@@ -1,0 +1,3 @@
+from __src.modules import CustomInstructionGenerator
+
+help(CustomInstructionGenerator)
