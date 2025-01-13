@@ -1,1 +1,1 @@
-from model_utils import ModelUtils
+from .model_utils import ModelUtils
