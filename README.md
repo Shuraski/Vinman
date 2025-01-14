@@ -1,7 +1,7 @@
 <h1 align="center">Vinman: Personality-Based Dialogue Generation</h1>
 
 > [!WARNING]
-> I do not have full control over the AI’s responses or behavior. The AI may occasionally produce inaccurate information, hallucinate, or behave in unexpected ways, which I have no control over.
+> I do not have full control over the AI's responses or behavior. The AI may occasionally produce inaccurate information, hallucinate, or behave in unexpected ways, which I have no control over.
 
 </div>
 
