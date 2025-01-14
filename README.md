@@ -44,12 +44,9 @@ If you have any questions, suggestions, or feedback, feel free to reach out:
 
 **Email**: [sashanik9623@gmail.com](mailto:sashanik9623@gmail.com)
 
-## Licenses
+# License
 
-This project is distributed under the MIT License. The full text of the license for this project can be found in the `LICENSE` file.
-
-Additionally, this project makes use of third-party software that is licensed under the following terms:
-
-- **Ollama**: MIT License
-
-Refer to the respective license documentation included in the project for full details.
+```
+Code License: MIT
+Tooling License: Ollama MIT license
+```
