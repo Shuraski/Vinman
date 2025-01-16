@@ -9,7 +9,7 @@
 
 Current day chatbot solutions lack human-like characteristics and natural behavior. Most chatbots available in the market don't include features like double-texting or accurate letter counting, and often fail to properly follow system instructions given by creators. This often leads to them breaking character or making responses that don't align with the flow of conversation. Additionally, tone-based text generators are primitive. While they attempt to make AI-generated text sound more natural by applying tone modifications, they still produce artificial-sounding output—even when given specific tone instructions.
 
-The goal of this project is to develop a human-like chat system that mimics user-defined personalities. The chatbot features typing delays based on message length and an experimental double-texting feature. The system will eventually parse and analyze large datasets to generate and maintain consistent personalities.
+The goal of this project is to develop a human-like chat system that mimics user-defined personalities. This chatbot features typing delays based on message length and an experimental double-texting feature. This system will eventually parse and analyze large datasets to generate and maintain consistent personalities.
 
 ## Getting Started
 
