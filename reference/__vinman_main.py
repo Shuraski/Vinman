@@ -12,13 +12,11 @@ BLUE = '\033[94m'
 GREEN = '\033[92m'
 RED = '\033[91m'
 YELLOW = '\033[93m'
-UNDERLINE = '\033[4m'
-BOLD = '\033[1m'
 RESET = '\033[0m'
 
 file_path = ""
 
-# Checking Whether the Model is Installed
+# Checking if the model is installed
 def check_model_installed(model_name):
     try:
         result = subprocess.run(['ollama', 'list'], capture_output=True, text=True)
@@ -31,31 +29,6 @@ def check_model_installed(model_name):
     except subprocess.CalledProcessError as e:
         print(f"An error occurred while checking or installing the model: {e}")
         exit(1)
-
-### NOT IMPLEMENTED YET ###
-# Saving Chosen Model
-def save_chosen_model():
-    if os.path.exists('chosen_model.txt'):
-        with open('chosen_model.txt', 'r') as file:
-            return file.read()
-    return None
-
-### NOT IMPLEMENTED YET ###
-# Implement function to load chosen model from saved file
-def load_chosen_model(model_name):
-    if os.path.exists('chosen_model.txt'):
-        with open('chosen_model.txt', 'r') as file:
-            first_line = file.readline().strip()
-            if first_line == model_name:
-                return first_line
-            else:
-                return None
-    return None
-
-### NOT IMPLEMENTED YET ###
-# Checking Whether (chosen_model) Has Content
-def check_model_content(check_model):
-    return chosen_model if chosen_model else 'llama3.2'
 
 # Response Delay Function
 def response_delay(delay_text,delay_time):
@@ -82,7 +55,6 @@ def chat_history_store(user_input_text = None, vinman_output_text = None):
 
 double_texting_binary = 0  # Default state: OFF
 
-# Double Texting Switch
 def double_texting_switch(on=None):
 
     global double_texting_binary
@@ -106,7 +78,7 @@ def double_text():
         double_text_system_instruction = double_text_system_instructions_file.read().replace("\n", " ")
 
     modelfile = f'''
-    FROM {chosen_model}
+    FROM llama3.2:latest
     SYSTEM {double_text_system_instruction}'''
 
     ollama.create(model='vinman_converse', modelfile=modelfile)
@@ -128,15 +100,14 @@ def double_text():
     
     response_delay(response['message']['content'],2)
     print(f"\n{YELLOW}{response['message']['content']}{RESET}\n")
-
-# Custom Instruction Generator
+    
 def custom_instruction_generator(memory_input = None):
 
     with open("_system_writer_system_instructions.json", "r", encoding='UTF-8') as sys_writer_system_instruction_file:
         sys_writer_system_instruction = json.load(sys_writer_system_instruction_file)
 
     modelfile = f'''
-    FROM {chosen_model}
+    FROM llama3.2:latest
     SYSTEM {sys_writer_system_instruction}'''
 
     ollama.create(model='vinman_converse', modelfile=modelfile)
@@ -151,7 +122,7 @@ def custom_instruction_generator(memory_input = None):
             vinman_personality_instruction = vinman_personality_instruction_file.read().replace("\n", " ")
 
         modelfile = f'''
-        FROM {chosen_model}
+        FROM llama3.2:latest
         SYSTEM Core personality: {vinman_personality_instruction} Chat log: {history_writer_system_instruction} I want you to build on top of the core personality based off of what is inside the chat log.'''
 
         ollama.create(model='vinman_converse', modelfile=modelfile)
@@ -195,7 +166,6 @@ def custom_instruction_generator(memory_input = None):
             if os.path.exists('vinman_custom_instructions.txt'):
                 break
 
-# Vinman Converse Main Chat Function
 def chat():
 
     with open("_vinman_system_instructions.json", "r", encoding='UTF-8') as vinman_system_instruction_file:
@@ -206,7 +176,7 @@ def chat():
         vinman_personality_instruction = vinman_personality_instruction_file.read().replace("\n", " ")
 
     modelfile = f'''
-    FROM {chosen_model}
+    FROM llama3.2:latest
     SYSTEM This is your base system instruction: {vinman_system_instruction} This is your personality: {vinman_personality_instruction}'''
 
     ollama.create(model='vinman_converse', modelfile=modelfile)
@@ -269,41 +239,29 @@ def chat():
         print(f"\n{YELLOW}{response['message']['content']}{RESET}\n")
 
         if double_texting_binary == 1:
-            double_text()
+            random_execution = random.randint(0,1)
+            if random_execution == 1:
+                double_text()
 
-# Main Program Loop
 while True:
     if not os.path.exists('vinman_custom_instructions.txt'):
-        
-        global current_model
+        choice = input(f"\nInitialize Converse Bot? Y/N?: ")
 
-        print(f"\n{UNDERLINE}{BOLD}Recommended: llama3.2{RESET}\n"
-            f"Parameter Size: 3b\n"
-            f"Required Storage: 2.0 GB\n")
-        
-        print(f"{UNDERLINE}{BOLD}dolphin-mistral:latest{RESET}\n"
-              f"Parameter Size: 7b\n"
-              f"Required Storage: 4.1 GB\n")
+        check_model_installed('llama3.2:latest')
 
-        chosen_model = input(f"{BLUE}Choose a model to install: {RESET}")
-
-        if chosen_model.lower().strip() == "llama3.2":
-            check_model_installed(chosen_model)
-            current_model =  chosen_model
+        if choice.lower().strip() == 'y':
             custom_instruction_generator()
-        
-        elif chosen_model.lower().strip() == "dolphin-mistral:latest":
-            check_model_installed(chosen_model)
-            current_model = chosen_model
-            custom_instruction_generator()
-        
-        elif chosen_model.lower().strip() == 'exit':
+
+        elif choice.lower().strip() == 'n':
+            print(f"\n{RED}Ending program...{RESET}\n")
+            break
+
+        elif choice.lower().strip() == 'exit':
             print(f"\n{RED}Ending program...{RESET}\n")
             break
 
         else:
-            print(f"{RED}Invalid choice. Please enter a valid model name.{RESET}")
-            continue
+            print(f"\n{RED}Invalid choice. Please enter Y/N or 'exit' to quit.{RESET}")
 
     else:
         print(f"\n{BLUE}Enter{RESET}{RED} 'exit' {RESET}{BLUE}to quit\nConverse Bot Menu Options:{RESET}\n")

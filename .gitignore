@@ -1,0 +1,8 @@
+# MacOS
+.DS_Store
+
+# Python bytecode files
+__pycache__/
+
+# Egg info
+vinman.egg-info/
