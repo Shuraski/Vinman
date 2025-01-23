@@ -1,7 +1,7 @@
 import json
 import ollama
 import os
-from src.ui import text_color
+from src.ui import LoadingAnimation, TextStyling
 
 class CustomInstructionGenerator:
     def __init__(self, chosen_model, memory_input=None):
@@ -60,7 +60,10 @@ class CustomInstructionGenerator:
                       \nHere are some prompt examples:\n* A grumpy old man named Terry who hates loud noise\n* Larry, a happy boy who likes to dance\n* Amy, responds with a lot of text acronyms\n{text_color('RESET')}""")
 
             elif user_input.strip() != '?':
-                print(f"\nGenerating personality...")
+                print('\n')
+                animation = LoadingAnimation()
+                animation.start("Generating Personality")
+
                 response = ollama.chat(model='vinman_converse', messages=[
                     {
                         'role': 'user',
@@ -68,7 +71,7 @@ class CustomInstructionGenerator:
                     }
                 ])
 
-                print(f'\nPersonality generated')
+                animation.stop(f'{text_color('GREEN')}Personality generated{text_color('RESET')}\n')
                 with open("vinman_custom_instructions.txt", "w", encoding="UTF-8") as file:
                     file.write(f"{response['message']['content']}")
                 

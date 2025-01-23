@@ -1,5 +1,5 @@
 import os
-from src.ui import text_color
+from src.ui import TextStyling
 
 class ITU_MainMenu:
     def __init__(self):
@@ -8,7 +8,8 @@ class ITU_MainMenu:
 
     def run(self):
         """Run the integrated terminal UI."""
-        print(f"\n{text_color('BLUE')}Enter {text_color('RED')}'exit'{text_color('RESET')} {text_color('BLUE')}to quit \nConverse Bot Menu Options{text_color('RESET')}\n")
+        self.clear_terminal()
+        print(f"{text_formatting('UNDERLINE')}Vinman Menu Options:")
         return self.show_options()
 
     def show_options(self):
@@ -20,10 +21,6 @@ class ITU_MainMenu:
             if choice.lower().strip() == 'exit':
                 print(f"\n{text_color('RED')}Ending program...{text_color('RESET')}\n")
                 return None
-            if choice.lower().strip() == 'clear':
-                os.system('cls' if os.name == 'nt' else 'clear')
-                print(f"{text_color('BLUE')}Enter {text_color('RED')}'exit'{text_color('RESET')} {text_color('BLUE')}to quit \nConverse Bot Menu Options{text_color('RESET')}\n")
-                continue
             if not choice.isdigit() or int(choice) not in range(1, len(self.options) + 1):
                 print(f"\n{text_color('RED')}Invalid choice.{text_color('RESET')}\n")
                 continue
@@ -31,14 +28,16 @@ class ITU_MainMenu:
 
     def run_command(self, choice):
         """Run the command based on the selected option."""
+        self.clear_terminal()
         if choice == 1:
-            print(f"\n{text_color('GREEN')}Conversation Launched{text_color('RESET')}\n")
             return 1
         elif choice == 2:
-            print(f"\n{text_color('GREEN')}Personality Creator Launched{text_color('RESET')}\n")
             return 2
         elif choice == 3:
-            print(f"\n{text_color('GREEN')}Double Texting Activated{text_color('RESET')}\n")
             return 3
         else:
             print("Invalid option selected.")
+
+    def clear_terminal(self):
+        """Clear the terminal screen."""
+        os.system('cls' if os.name == 'nt' else 'clear')
