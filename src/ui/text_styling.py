@@ -19,6 +19,7 @@ class TextStyling:
             "UNDERLINE": '\033[4m',
             "BOLD": '\033[1m',
             "ITALIC": '\033[3m',
+            "RESET": '\033[0m'  # Add RESET format here
         }
 
         if choose_format in formats:

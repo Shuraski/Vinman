@@ -1,8 +1,6 @@
 from src.chat import CustomInstructionGenerator
 from src.ui import ITU_MainMenu
 
-### Currently unfunctional with this release
-
 itu = ITU_MainMenu()
 
 itu_result = itu.run()
