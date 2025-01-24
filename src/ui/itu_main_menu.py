@@ -27,7 +27,9 @@ class ITU_MainMenu:
                 print(f"\n{self.text_styling.text_color('RED')}Ending program...{self.text_styling.text_color('RESET')}\n")
                 return None
             if not choice.isdigit() or int(choice) not in range(1, len(self.options) + 1):
-                print(f"\n{self.text_styling.text_color('RED')}Invalid choice.{self.text_styling.text_color('RESET')}\n")
+                self.clear_terminal()
+                print(f"{self.text_styling.text_color('RED')}Invalid choice.{self.text_styling.text_color('RESET')}\n")
+                print(f"{self.text_styling.text_formatting('UNDERLINE')}{self.text_styling.text_formatting('BOLD')}{self.text_styling.text_color('YELLOW')}Vinman Menu Options{self.text_styling.text_formatting('RESET')}\n")
                 continue
             return self.run_command(int(choice))
 
