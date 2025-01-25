@@ -6,7 +6,7 @@ class TextStyling:
             "GREEN": '\033[92m',
             "RED": '\033[91m',
             "YELLOW": '\033[93m',
-            "RESET": '\033[0m'
+            "GRAY": '\033[90m',
         }
 
         if choose_color in colors:
@@ -19,7 +19,6 @@ class TextStyling:
             "UNDERLINE": '\033[4m',
             "BOLD": '\033[1m',
             "ITALIC": '\033[3m',
-            "RESET": '\033[0m'  # Add RESET format here
         }
 
         if choose_format in formats:

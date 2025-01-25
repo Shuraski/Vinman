@@ -1,7 +1,7 @@
 import json
 import ollama
 import os
-from src.ui import LoadingAnimation, TextStyling
+from src.ui import LoadingAnimation, TextStyling, PlaceholderInput
 
 class CustomInstructionGenerator:
     def __init__(self, chosen_model, memory_input=None):
@@ -48,17 +48,19 @@ class CustomInstructionGenerator:
             file.write(f"\n{response['message']['content']}")
 
     def _interactive_instruction_builder(self):
-        print(f"{self.text_styling.text_color('BLUE')}Enter {self.text_styling.text_color('RESET')}{self.text_styling.text_color('RED')}'exit'{self.text_styling.text_color('RESET')} {self.text_styling.text_color('BLUE')}to end the instruction builder, or for more options, enter '?' for instruction prompt examples\nDefine the AI's personality or behavior (e.g., tone, style, purpose)\n{self.text_styling.text_color('RESET')}")
+        print(f"{self.text_styling.text_color('BLUE')}Enter {self.text_styling.reset_text_formatting('RESET')}{self.text_styling.text_color('RED')}'exit'{self.text_styling.reset_text_formatting('RESET')} {self.text_styling.text_color('BLUE')}to end the instruction builder, or for more options, enter '?' for instruction prompt examples\nDefine the AI's personality or behavior (e.g., tone, style, purpose)\n{self.text_styling.reset_text_formatting('RESET')}")
         while True:
-            user_input = input("Enter personality: ")
+            text_styling = TextStyling()
+            placeholder_input = PlaceholderInput(f'{text_styling.text_color('GRAY')}Enter "exit" to end instruction builder or "?" for more details {text_styling.reset_text_formatting('RESET')}')
+            user_input = placeholder_input.get_input()
 
             if user_input.lower() == 'exit':
-                print(f"\n{self.text_styling.text_color('RED')}Ending chat...{self.text_styling.text_color('RESET')}\n")
+                print(f"\n{self.text_styling.text_color('RED')}Ending chat...{self.text_styling.reset_text_formatting('RESET')}\n")
                 break
 
             elif user_input.strip() == '?':
                 print(f"""\n{self.text_styling.text_color('BLUE')}You're currently in the process of creating a personality for the Vinman. Don't worry about making your request perfect; feel free to keep it as rough or messy as you like. Just include a name and some personality traits to guide how the Vinman should behave.
-                      \nHere are some prompt examples:\n* A grumpy old man named Terry who hates loud noise\n* Larry, a happy boy who likes to dance\n* Amy, responds with a lot of text acronyms\n{self.text_styling.text_color('RESET')}""")
+                      \nHere are some prompt examples:\n* A grumpy old man named Terry who hates loud noise\n* Larry, a happy boy who likes to dance\n* Amy, responds with a lot of text acronyms\n{self.text_styling.reset_text_formatting('RESET')}""")
 
             elif user_input.strip() != '?':
                 print('\n')
@@ -72,7 +74,7 @@ class CustomInstructionGenerator:
                     }
                 ])
 
-                animation.stop(f'{self.text_styling.text_color('GREEN')}Personality generated{self.text_styling.text_color('RESET')}\n')
+                animation.stop(f'{self.text_styling.text_color('GREEN')}Personality generated{self.text_styling.reset_text_formatting('RESET')}\n')
                 with open("vinman_custom_instructions.txt", "w", encoding="UTF-8") as file:
                     file.write(f"{response['message']['content']}")
                 
