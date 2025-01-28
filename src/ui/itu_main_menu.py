@@ -8,7 +8,7 @@ class ITU_MainMenu:
         self.text_styling = TextStyling()
         self.options = [
             "Launch Vinman", 
-            "Generate New Personality", 
+            "Personality Forge", 
             f"Activate Double Texting {self.text_styling.text_color('RED')}(Unstable Feature){self.text_styling.reset_text_formatting('RESET')}"
         ]
 
@@ -27,7 +27,7 @@ class ITU_MainMenu:
                 print(f"{idx}) {option}")
             print()
             choice = placeholder_input.get_input()
-            if choice.lower().strip() == 'exit':
+            if choice.lower().strip() == '/exit':
                 print(f"\n{self.text_styling.text_color('RED')}Ending program...{self.text_styling.reset_text_formatting('RESET')}\n")
                 return None
             if not choice.isdigit() or int(choice) not in range(1, len(self.options) + 1):

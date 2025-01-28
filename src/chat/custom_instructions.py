@@ -1,13 +1,14 @@
 import json
 import ollama
 import os
-from src.ui import LoadingAnimation, TextStyling, PlaceholderInput
+from src.ui import LoadingAnimation, TextStyling, PlaceholderInput, ITU_MainMenu
 
 class CustomInstructionGenerator:
     def __init__(self, chosen_model, memory_input=None):
         self.chosen_model = chosen_model
         self.memory_input = memory_input
         self.text_styling = TextStyling()
+        self.menu_display = ITU_MainMenu()
 
     def generate_instructions(self):
         with open("_system_writer_system_instructions.json", "r", encoding='UTF-8') as sys_writer_system_instruction_file:
@@ -48,21 +49,25 @@ class CustomInstructionGenerator:
             file.write(f"\n{response['message']['content']}")
 
     def _interactive_instruction_builder(self):
-        print(f"{self.text_styling.text_color('BLUE')}Enter {self.text_styling.reset_text_formatting('RESET')}{self.text_styling.text_color('RED')}'exit'{self.text_styling.reset_text_formatting('RESET')} {self.text_styling.text_color('BLUE')}to end the instruction builder, or for more options, enter '?' for instruction prompt examples\nDefine the AI's personality or behavior (e.g., tone, style, purpose)\n{self.text_styling.reset_text_formatting('RESET')}")
+        print(f"{self.text_styling.text_color('YELLOW')}{self.text_styling.text_formatting('BOLD')}{self.text_styling.text_formatting('UNDERLINE')}Personality Forge{self.text_styling.reset_text_formatting('RESET')}\n")
+        print(f"{self.text_styling.text_color('BLUE')}Define the AI's personality or behavior (e.g., tone, style, purpose){self.text_styling.reset_text_formatting('RESET')}\n")
         while True:
             text_styling = TextStyling()
-            placeholder_input = PlaceholderInput(f'{text_styling.text_color('GRAY')}Enter "exit" to end instruction builder or "?" for more details {text_styling.reset_text_formatting('RESET')}')
+            placeholder_input = PlaceholderInput(f'{text_styling.text_color('GRAY')}Enter personality (/exit to end personality forge or /? for more details) {text_styling.reset_text_formatting('RESET')}')
             user_input = placeholder_input.get_input()
 
-            if user_input.lower() == 'exit':
+            if user_input.lower() == '/exit':
                 print(f"\n{self.text_styling.text_color('RED')}Ending chat...{self.text_styling.reset_text_formatting('RESET')}\n")
+                
                 break
 
-            elif user_input.strip() == '?':
-                print(f"""\n{self.text_styling.text_color('BLUE')}You're currently in the process of creating a personality for the Vinman. Don't worry about making your request perfect; feel free to keep it as rough or messy as you like. Just include a name and some personality traits to guide how the Vinman should behave.
-                      \nHere are some prompt examples:\n* A grumpy old man named Terry who hates loud noise\n* Larry, a happy boy who likes to dance\n* Amy, responds with a lot of text acronyms\n{self.text_styling.reset_text_formatting('RESET')}""")
+            elif user_input.strip() == '/?':
+                self.menu_display.clear_terminal()
+                print(f"{self.text_styling.text_formatting('UNDERLINE')}{self.text_styling.text_formatting('BOLD')}{self.text_styling.text_color('YELLOW')}Personality Forge Details{self.text_styling.reset_text_formatting('RESET')}\n")
+                print(f"""{self.text_styling.text_color('BLUE')}You're currently in the process of creating a custom personality for the Vinman. Don't worry about making your request perfect; feel free to keep it as rough or messy as you like. Just include a name and some personality traits to guide how the Vinman should behave.
+                      \nHere are some prompt examples:\n\n• A grumpy old man named Terry who hates loud noise\n• Larry, a happy boy who likes to dance\n• Amy, responds with a lot of text acronyms\n{self.text_styling.reset_text_formatting('RESET')}""")
 
-            elif user_input.strip() != '?':
+            elif user_input.strip() != '/?':
                 print('\n')
                 animation = LoadingAnimation()
                 animation.start("Generating Personality")
